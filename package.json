@@ -1,0 +1,15 @@
+{
+  "name": "thorium-ssr-ts-apptest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "MODE=PROD node app.js",
+    "debug": "MODE=DEBUG WATCH=. node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "thorium-server": "^0.0.0"
+  }
+}
