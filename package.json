@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "thorium-server": "^0.0.0"
+    "thorium-server": "^1.0.0"
   }
 }
