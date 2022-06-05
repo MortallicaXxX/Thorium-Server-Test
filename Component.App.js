@@ -1,4 +1,4 @@
-const ThoriumServer = require('Thorium-server').default;
+const ThoriumServer = require('./app.js');
 
 ThoriumServer.include(`${__dirname}/public/stylesheets/style.css`);
 
@@ -7,26 +7,44 @@ const {
   Nav:Nav ,
   Section:Section,
   Div:Div,
+  H1:H1,
   Paragraphe:Paragraphe,
-  Button:Button
+  Button:Button,
 } = ThoriumServer.ssr.components;
 
 module.exports = (function(){
 
-  const MyApp = class extends App{
-
-    static Thuile = class extends Div{
-      constructor(text){
-        super({
-          prop : {
-            class : 'section-thuile',
-          },
-          childrens : [
-            new Paragraphe(text)
-          ]
-        })
-      }
+  const content_title = new H1('Thorium-server');
+  const content_image = new Div({
+    prop : {
+      class : 'app-content-image'
     }
+  });
+  const content_footer = new Div({
+    prop : {
+      class : 'app-content-footer'
+    },
+    childrens : [
+      new Paragraphe('View more'),
+      new Paragraphe('Documentation'),
+      new Paragraphe('View more'),
+    ]
+  })
+
+  const Content = new class extends Div{
+
+    constructor(){
+      super({
+        prop : {
+          class : 'app-content'
+        },
+        childrens : [ content_title, content_image , content_footer ]
+      })
+    }
+
+  }
+
+  const MyApp = class extends App{
 
     constructor(){
       super({
@@ -34,38 +52,7 @@ module.exports = (function(){
           id : 'app',
           class : 'app'
         },
-        childrens : [
-          new Nav({
-            prop : {
-              name : 'app-nav',
-              class : 'app-nav'
-            },
-            childrens : [
-              new Button({ prop : { text : 'Hello' } }),
-              new Button({ prop : { text : 'je' } }),
-              new Button({ prop : { text : 'suis' } }),
-              new Button({ prop : { text : 'une' } }),
-              new Button({ prop : { text : 'nav' } }),
-            ]
-          }),
-          new Section({
-            prop : {
-              class : 'app-section'
-            },
-            childrens : [
-              new MyApp.Thuile('HELLO'),
-              new MyApp.Thuile('Benoit'),
-              new MyApp.Thuile('Guillaume'),
-              new MyApp.Thuile('Mario'),
-              new MyApp.Thuile('Pearl'),
-              new MyApp.Thuile('Mamy'),
-              new MyApp.Thuile('Papy'),
-              new MyApp.Thuile('Patrick'),
-              new MyApp.Thuile('Mamy2'),
-              new MyApp.Thuile('Papy2'),
-            ]
-          })
-        ]
+        childrens : [Content]
       })
     }
   };

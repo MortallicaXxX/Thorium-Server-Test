@@ -1,16 +1,7 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: ghostwhite;
-}
+:root{
 
-a {
-  color: #00B7FF;
-}
+  --default-background:ghostwhite;
 
-button{
-  background-color: green;
-  border:none;
 }
 
 .app{
@@ -19,46 +10,69 @@ button{
   width:100%;
   left:0;
   top:0;
-  display: grid;
-  grid-template-rows: min-content minmax(0,1fr);
 
   font-size: 16px;
+  background-color: var(--default-background);
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  display:grid;
 
 }
 
-.app > .app-nav {
-  width : 100%;
-  display : inline-flex;
-  padding : 10px;
-  background-color:blue;
+.app > .app-content{
+
+  margin:auto;
+  max-height:600px;
+  max-width:600px;
+  height : 80%;
+  width : 80%;
+  display:grid;
+  grid-column: 1;
+  grid-row: 1;
+  grid-template-rows: min-content minmax(0,1fr) min-content;
+  margin:auto;
 }
 
-.app > .app-nav > button {
-  font-size: 16px;
-  padding: 10px;
-  border-radius: 10px;
-  min-width: 5ch;
+.app > .app-content > *{
+  grid-column: 1;
+  z-index: 1;
+  padding:30px;
 }
 
-.app > .app-section{
-  display : grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px , 1fr));
-  grid-template-rows: repeat(auto-fill, 200px);
+.app > .app-content > h1{
+  grid-row: 1;
+  margin:auto;
+}
+
+.app > .app-content > .app-content-image{
+  grid-row: 2;
+  background-image: url('images/thorium.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* background:red; */
+  aspect-ratio: 1/1;
+  width: 50%;
+  margin: auto;
+  border-radius: 100%;
+  border:5px solid black;
+}
+
+.app > .app-content > .app-content-footer{
+  grid-row: 3;
+  margin:auto;
+  display:inline-flex;
+  gap:60px;
+}
+
+.app > .app-content::after{
+  content : ' ';
   height: 100%;
-  widht: fit-content;
-  padding : 10px;
-  grid-gap: 10px;
-}
-
-.app > .app-section > .section-thuile{
-  height : 100%;
-  width : 100%;
-  margin : auto;
-  background-color: lightcoral;
-  display : grid;
-}
-
-.app > .app-section > .section-thuile > p{
-  height : fit-content;
-  margin : auto;
+  width: 100%;
+  background: radial-gradient(circle, rgba(196,196,196,0.5) 0%, rgba(158,158,158,0.3) 100%);
+  background-image: linear-gradient(90deg, rgba(131,58,180,0.1) 0%, rgba(253,29,29,0.1) 50%, rgba(252,176,69,0.1) 100%);
+  grid-column: 1;
+  grid-row: 1/4;
+  z-index:0;
+  filter: blur(5px);
+  border-radius:20px;
 }
